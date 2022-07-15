@@ -1,0 +1,11 @@
+DS18B20.c:56:13:delayMicro	16	static
+DS18B20.c:62:6:__prueba	16	static
+DS18B20.c:74:6:choose_pin	4	static
+DS18B20.c:94:9:ds18b20_init_seq	8	static
+DS18B20.c:116:10:ds18b20_read_rom_cmd	80	static
+DS18B20.c:140:6:ds18b20_send_function_cmd	16	static
+DS18B20.c:156:6:ds18b20_send_rom_cmd	16	static
+DS18B20.c:167:7:ds18b20_read_temp	24	static
+DS18B20.c:194:6:ds18b20_write_byte	24	static
+DS18B20.c:221:9:ds18b20_read_bit	8	static
+DS18B20.c:242:9:ds18b20_read_byte	16	static

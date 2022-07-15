@@ -1,0 +1,99 @@
+
+
+
+			NOTAS ACLARATORIAS Y RECORDATORIAS DEL PROYECTO MOTOSTUDENT 2021/2022
+
+
+*********FALTA LA ADQUISICIÓN DE TENSIÓN
+
+- Sensor MPU6050:	OK
+
+- Sensor DS18B20:	OK  DIR: 0xF6 B40C94970C03 28 --> 28,B4,0C,94,97,0C,03,F6
+1-wire signal line should be pulled-up to VCC of the device with a 4.7k resistor.
+Moreover, the signal line PIO should be configured in the output open-drain mode and pull-up.
+Tiempo aprox. por sonda = 7ms
+
+- CÓDIGO LOOP():
+En el bucle infinito estará la carga de datos del STM32 a la RaspberryPi por medio de UART6 y la carga de datos a la SD
+por medio de SPI2.
+
+
+- INTERRUPCIONES INTERNAS:	OK
+Las interrupciones INTERNAS se van a gestionar con el TIM11 (APB2), creando una interrupción cada vez que llegue a su
+numero de Counter Period.
+El TIM2 se preescala de 100MHZ a 10KHz (0.1ms) si ajustamos el Counter Period a 550, saltará la interrupción cada 55ms.
+Orden de lectura/escritura de sensores:
+	· Frecuencia BMS. --> por esto no se pone un ciclo de interrupcion más corto.
+	· Temperaturas DS18b20.
+	· Giroscopio.
+	· Sensores Analógicos.
+
+Prioridad 3 para este tipo interrupción.
+
+https://letanphuc.net/2015/06/stm32f0-timer-tutorial-and-counter-tutorial/
+
+
+- INTERRUPCIONES EXTERNAS:
+Enumeración de interrupciones EXTERNAS:
+	· OK IMD. *				--> Apertura HVS
+	· Fallo en BMS. *			--> Aviso Pantalla
+	· Bateria Baja **			--> Aviso Pantalla
+	· Activación/desactivación HVS **.	--> Aviso Pantalla
+
+* Prioridad 2.
+** Prioridad 1.
+*** Prioridad 0.
+
+
+- Watch Dogs (IWDG):	OK
+El watch dogs se reseteará en cada interrupción y se activará con un retardo de 1 sg.
+
+
+
+TIM11 -> INTERRUPCIONES INTERNAS	OK
+TIM10 -> DELAY MICROS			OK
+TIM2 -> MEDIDOR PWM			OK
+UART2 -> INFO A ORDENADOR		OK
+UAR2 -> RASPBERRY PI
+
+
+
+
+
+
+PINES STM32 GENERAL:
+
+1. Digitales:
+	· Interrupciones:
+		- OK IMD
+		- Fallo BMS
+		- Activación/Desactivación contactor HVS
+
+	· Timers:
+		- Frecuencia y duty IMD
+
+	· Comunicaciones:
+		- I2C (2)
+		- USART (Ordenador (2) y Raspberry (2))
+		- ¿? SPI ¿?
+		- ¿? CAN ¿?
+	
+	· Sensores digitales:
+		- Giroscopio
+		- Sensores temperatura DS18B20
+		- 
+	· TOTAL: 3 + 1 + 6 + (1 + DS18B20*1)
+
+2. Analógicos:
+	· ¿? Sensores amortiguación analógicos ¿?
+	· ¿? Sensores temperatura analógicos ¿?
+	
+	· TOTAL: ¿?
+
+3. Otros:
+	· Botón Reset
+	· Osciladores de baja y alta frecuencia (4)
+	· ¿? Botón externo con alguna función manual ¿?
+	· Pines de Debug (2)
+
+	· TOTAL: 8
