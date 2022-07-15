@@ -23,7 +23,6 @@
  *
  *  Created on: 	00.00.0000
  *  Author: 		Rubén Torres Bermúdez <rubentorresbermudez@gmail.com>
- *  Co-Author:		Adrián Marín Andrades <adrimarin218@gmail.com>
  *  Organism:		Sevilla Racing. Universidad de Sevilla.
  *
  *	Description:
@@ -31,8 +30,6 @@
  *		into a electric racing bike for MotoStudent International Competition.
  *		Sevilla Racing is representing the motorcycle team of Universidad de Sevilla.
  *
- *		This code has been prepared to work with the HAL STM32 libraries.
- *		ds18b20_rt library is a modified version to https://github.com/mfrydrysiak/ds18b20_mflib
  *		MPU6050 library's credits belongs to its respective owner.
  *
  *		Copyright (C) 2022 Rubén Torres Bermúdez
